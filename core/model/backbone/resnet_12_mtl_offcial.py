@@ -216,8 +216,9 @@ class ResNetMTLOfficial(nn.Module):
             if isinstance(m, self.Conv2d):
                 nn.init.kaiming_normal_(m.weight, mode="fan_out", nonlinearity="relu")
             elif isinstance(m, nn.BatchNorm2d):
-                nn.init.constant_(m.weight, 1)
-                nn.init.constant_(m.bias, 0)
+                #nn.init.constant_(m.weight, 1)
+                #nn.init.constant_(m.bias, 0)
+                pass
 
     def _make_layer(self, block, planes, blocks, stride=1, MTL=False):
         downsample = None
@@ -231,7 +232,7 @@ class ResNetMTLOfficial(nn.Module):
                     bias=False,
                     MTL=MTL,
                 ),
-                nn.BatchNorm2d(planes * block.expansion),
+                nn.BatchNorm2d(planes * block.expansion, affine = False),
             )
 
         layers = []

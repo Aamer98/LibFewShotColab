@@ -113,8 +113,9 @@ class WideResNet(nn.Module):
                 n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
                 m.weight.data.normal_(0, math.sqrt(2.0 / n))
             elif isinstance(m, nn.BatchNorm2d):
-                m.weight.data.fill_(1)
-                m.bias.data.zero_()
+                #m.weight.data.fill_(1)
+                #m.bias.data.zero_()
+                pass
             elif isinstance(m, nn.Linear):
                 m.bias.data.zero_()
 

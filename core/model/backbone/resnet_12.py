@@ -39,12 +39,12 @@ class BasicBlock(nn.Module):
     ):
         super(BasicBlock, self).__init__()
         self.conv1 = conv3x3(inplanes, planes)
-        self.bn1 = nn.BatchNorm2d(planes, affine = False)
+        self.bn1 = nn.BatchNorm2d(planes, affine = True)
         self.relu = nn.LeakyReLU(0.1)
         self.conv2 = conv3x3(planes, planes)
-        self.bn2 = nn.BatchNorm2d(planes, affine = False)
+        self.bn2 = nn.BatchNorm2d(planes, affine = True)
         self.conv3 = conv3x3(planes, planes)
-        self.bn3 = nn.BatchNorm2d(planes, affine = False)
+        self.bn3 = nn.BatchNorm2d(planes, affine = True)
         self.maxpool = nn.MaxPool2d(stride)
         self.downsample = downsample
         self.stride = stride
@@ -167,7 +167,7 @@ class ResNet(nn.Module):
                     stride=1,
                     bias=False,
                 ),
-                nn.BatchNorm2d(planes * block.expansion, affine = False),
+                nn.BatchNorm2d(planes * block.expansion, affine = True),
             )
 
         layers = []
